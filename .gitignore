@@ -44,4 +44,11 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
 /app/generated/prisma
+
+# banco local prisma
+prisma/dev.db
