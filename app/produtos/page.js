@@ -1,5 +1,5 @@
 "use client"
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import Link from 'next/link';
 import { useSearchParams, useRouter } from 'next/navigation';
 import Sidebar from '@/components/layout/Sidebar';
@@ -13,7 +13,7 @@ import { useAddToCart } from '@/hooks/useCart';
 import { Heart, ShoppingCart, Search, Filter } from 'lucide-react';
 import Skeleton, { ProductCardSkeleton } from '@/components/ui/Skeleton';
 
-export default function Produtos() {
+function ProductsContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -214,5 +214,13 @@ export default function Produtos() {
       <Footer />
       <WhatsAppButton />
     </div>
+  );
+}
+
+export default function ProdutosPage() {
+  return (
+    <Suspense fallback={<div className="bg-white min-h-screen font-sans text-charcoal flex items-center justify-center">Carregando produtos...</div>}>
+      <ProductsContent />
+    </Suspense>
   );
 }
